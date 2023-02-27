@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap" rel="stylesheet">   
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+
+<!--
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+
+   <style>
+    .cust_prod ,.cust_amount,.cust_des,.cust_cre{
+      font-family: 'Mukta', sans-serif;
+      padding: 10px;
+    }
+    .cust_prod,.cust_amount,.cust_des,.cust_cre{
+    background-color: rgba(128, 128, 128, 0.274);
+    width: 100px;
+    margin: 3px;
+    border-radius: 5px;
+    }
+   
+    .cust_lnk{
+      padding: 10px;
+      font-family: 'Mukta', sans-serif;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: black;
+      letter-spacing: 1px;
+
+      
+    }
+    .data_rep_con{
+      display: flex;
+    }
+    .bck_1{
+      margin: 3px;
+      border-radius: 5px;
+      background-color: lightblue;
+    }
+    .bck_2{
+      border-radius: 5px;
+      background-color: rgba(255, 0, 0, 0.343);
+      margin: 3px;
+    }
+    .contanier_sem{
+      display: flex;
+      justify-content: space-between;
+      width: 47%;
+    }
+    .cust_add{
+      margin: 10px 0px;
+      width: auto;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: 'Mukta', sans-serif;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: black;
+      letter-spacing: 1px;
+      background-color: rgba(0, 128, 0, 0.555);
+    }
+    .cust_search{
+      padding: 10px;
+    }
+    .page_hed{
+      font-family: 'Josefin Sans', sans-serif;
+    }
+    .cust_hed_nav{
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      margin-top: 10px;
+      padding: 10px;
+    }
+    .cust_1{
+      display: flex;
+    }
+    .p_1,.p_2{
+      padding-right: 6px;
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: bold;
+    }
+    .logout_lnk{
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: black;
+      border-radius: 5px;
+      background-color: rgba(255, 0, 0, 0.343);
+      padding: 10px;
+    }
+   </style>
+</head>
+<body>
+ 
+  {% if request.user.is_authenticated %}
+  <div class="cust_hed_nav">
+    <div class="cust_1"><p class="p_1">Hello</p> <p class="p_1">{{ request.user | title }}</p></div>
+    <div class="cust_2"><a class="logout_lnk" href="{% url 'logout' %}">logout</a></div>
+  </div>
+  
+  
+  {% else %}
+  <a href="{% url 'login' %}">login</a>
+  {% endif %}
+
+  
+  <h1 class="page_hed">Income & Expenses</h1>
+   <div class="contanier_sem">
+    
+    <form action="" method="GET">
+      <input class="cust_search" type="text" name="search-area" value="{{ search_input }}">
+      <input class="cust_search" type="submit" value="Search">
+    </form>
+
+    <a class="cust_add" href="{% url 'create' %}">Create New Expenses</a>
+
+   </div>
+
+    <center>
+      
+    {% for i in passing_data %}
+    <!-- {{ i.first_name }} -->
+   <div class="data_rep_con">
+    <div class="cust_prod"> {{ i.product }} </div>
+    <div class="cust_amount"> {{ i.amount }} </div>
+    <div class="cust_des">{{ i.description }}</div>
+    <div class="cust_cre">{{ i.created }} </div>
+   <!-- <a class="cust_lnk" href="{% url 'details' i.id %}">details</a> -->
+    <a class="cust_lnk bck_1" href="{% url 'update' i.id %}">update</a>
+    <a class="cust_lnk bck_2"  href="{% url 'delete' i.id %}">Delete</a>
+   </div>
+    <!--  {{ i.complete }} -->
+     
+      
+      {% empty %}
+      <h3>nothing</h3>
+      {% endfor %}  
+  
+    </center>
+    
+</body>
+</html>

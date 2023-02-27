@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap" rel="stylesheet">   
+  
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Register</title>
+   <style>
+      .cont_1{
+         border: 1px solid black;
+         width: max-content;
+         padding: 30px;
+         border-radius: 5px;
+         background-color: aliceblue;
+         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+         text-transform: capitalize;
+      }
+      input{
+         padding: 10px;
+      
+      }
+      label{
+         font-family: 'Mukta', sans-serif;
+         font-weight: bold;
+      }      
+   </style>
+</head>
+<body>
+   <div class="cont_1">
+      <h1>register</h1>
+      <form action="" method="POST">
+         {% csrf_token %}
+         {{ form.as_p }}
+         <input class="btn btn_cls" type="submit" value="register">
+      </form> 
+ 
+      <a type="button" href="{% url 'login' %}">login</a>
+   </div>
+   
+     
+</body>
+</html>

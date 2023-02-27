@@ -1,0 +1,7 @@
+<a href="{% url 'expenses' %}"></a>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <p> you want delete "{{ delete }}"</p>
+    <input type="submit" value="Delete">
+</form>
